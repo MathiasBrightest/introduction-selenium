@@ -6,14 +6,15 @@ describe("sample test", () => {
     let page: SauceDemoPage;
 
     before("init page", ()  => {
-        page = new SauceDemoPage("https://www.saucedemo.com/");
-        should()
+        page = new SauceDemoPage();
+        
     });
 
-    it("do a test", () => {
-        const nameOfButton = "Login";
-
-        expect(page.driver.findElement(page.button).getText()).to(nameOfButton)
-
+    it("login a user", async () => {
+        await page.search("https://www.saucedemo.com/")
+        const username = "standard_user"
+        const password = "secret_sauce"
+        
+        await page.login(username, password);
     });
 });
